@@ -4,6 +4,6 @@ insert into user_account (user_id, user_password, nickname, email, memo, created
     ('uno', 'asdf1234', 'Uno', 'uno@mail.com', 'I am Uno.', now(), 'uno', now(), 'uno')
 ;
 
-INSERT INTO article (title, content, create_at, create_by, modified_at, modified_by, hashtag) VALUES ('title1', 'content1', now(), 'test', now(), 'test', '#spring');
+INSERT INTO article (title, content, created_at, created_by, modified_at, modified_by, hashtag) VALUES ('title1', 'content1', now(), 'test', now(), 'test', '#spring');
 
-INSERT INTO article_comment (article_id, content, create_at, create_by, modified_at, modified_by) VALUES (1, 'content', now(), 'test', now(), 'test');
+INSERT INTO article_comment (article_id, content, created_at, created_by, modified_at, modified_by) VALUES (1, 'content', now(), 'test', now(), 'test');
