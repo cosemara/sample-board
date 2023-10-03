@@ -11,14 +11,16 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.LinkedHashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Getter
 @ToString
 @Table(indexes = {
         @Index(columnList = "content"),
-        @Index(columnList = "createAt"),
-        @Index(columnList = "createBy")
+        @Index(columnList = "createdAt"),
+        @Index(columnList = "createdBy")
 })
 @Entity
 public class ArticleComment extends AuditingFields {
@@ -27,6 +29,7 @@ public class ArticleComment extends AuditingFields {
     private Long id;
 
     @Setter @ManyToOne(optional = false) private Article article;
+
     @Setter @Column(nullable = false, length = 500) private String content;
 
     protected ArticleComment() {

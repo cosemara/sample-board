@@ -1,3 +1,9 @@
-INSERT INTO article (title, content, create_at, create_by, modified_at, modified_by, hashtag) VALUES ('title1', 'content1', now(), 'test', now(), 'test', '#spring');
+-- 테스트 계정
+-- TODO: 테스트용이지만 비밀번호가 노출된 데이터 세팅. 개선하는 것이 좋을 지 고민해 보자.
+insert into user_account (user_id, user_password, nickname, email, memo, created_at, created_by, modified_at, modified_by) values
+    ('uno', 'asdf1234', 'Uno', 'uno@mail.com', 'I am Uno.', now(), 'uno', now(), 'uno')
+;
 
-INSERT INTO article_comment (article_id, content, create_at, create_by, modified_at, modified_by) VALUES (1, 'content', now(), 'test', now(), 'test');
+INSERT INTO article (title, content, created_at, created_by, modified_at, modified_by, hashtag) VALUES ('title1', 'content1', now(), 'test', now(), 'test', '#spring');
+
+INSERT INTO article_comment (article_id, content, created_at, created_by, modified_at, modified_by) VALUES (1, 'content', now(), 'test', now(), 'test');

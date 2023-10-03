@@ -21,9 +21,9 @@ public interface ArticleCommentRepository extends
     @Override
     default void customize(QuerydslBindings bindings, QArticleComment root) {
         bindings.excludeUnlistedProperties(true);
-        bindings.including(root.content, root.createBy, root.createAt);
+        bindings.including(root.content, root.createdBy, root.createdAt);
         bindings.bind(root.content).first(StringExpression::containsIgnoreCase);
-        bindings.bind(root.createBy).first(StringExpression::containsIgnoreCase);
-        bindings.bind(root.createAt).first(DateTimeExpression::eq);
+        bindings.bind(root.createdBy).first(StringExpression::containsIgnoreCase);
+        bindings.bind(root.createdAt).first(DateTimeExpression::eq);
     }
 }
