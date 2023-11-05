@@ -2,6 +2,7 @@ package com.example.sampleboard.repository;
 
 import com.example.sampleboard.config.JpaConfig;
 import com.example.sampleboard.domain.Article;
+import com.example.sampleboard.domain.Hashtag;
 import com.example.sampleboard.domain.UserAccount;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,6 +11,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 
 import java.util.List;
+import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -49,8 +51,8 @@ class JpaRepositoryTest {
     void givenTestData_whenInserting_thenWorksFine() {
         // Given
         long previousCount = articleRepository.count();
-        UserAccount userAccount = userAccountRepository.save(UserAccount.of("uno", "pw", null, null, null));
-        Article article = Article.of(userAccount, "new article", "new content", "#spring");
+        UserAccount userAccount = userAccountRepository.save(UserAccount.of("newUno", "pw", null, null, null));
+        Article article = Article.of(userAccount, "new article", "new content");
 
         // When
         articleRepository.save(article);
@@ -64,14 +66,18 @@ class JpaRepositoryTest {
     void givenTestData_whenUpdating_thenWorksFine() {
         // Given
         Article article = articleRepository.findById(1L).orElseThrow();
-        String updateHashTag = "#SpringBoot";
-        article.setHashtag(updateHashTag);
+        Hashtag updatedHashtag = Hashtag.of("springboot");
+        article.clearHashtags();
+        article.addHashtags(Set.of(updatedHashtag));
 
         // When
-        Article savedArtlce = articleRepository.saveAndFlush(article);
+        Article savedArticle = articleRepository.saveAndFlush(article);
 
         // Then
-        assertThat(savedArtlce).hasFieldOrPropertyWithValue("hashtag", updateHashTag);
+        assertThat(savedArticle.getHashtags())
+                .hasSize(1)
+                .extracting("hashtagName", String.class)
+                .containsExactly(updatedHashtag.getHashtagName());
     }
 
     @DisplayName("delete test")
