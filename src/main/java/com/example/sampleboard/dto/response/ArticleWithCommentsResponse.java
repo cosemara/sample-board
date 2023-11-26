@@ -1,12 +1,9 @@
 package com.example.sampleboard.dto.response;
 
-import com.example.sampleboard.dto.ArticleCommentDto;
 import com.example.sampleboard.dto.ArticleWithCommentsDto;
-import com.example.sampleboard.dto.HashtagDto;
 
 import java.time.LocalDateTime;
 import java.util.*;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public record ArticleWithCommentsResponse(

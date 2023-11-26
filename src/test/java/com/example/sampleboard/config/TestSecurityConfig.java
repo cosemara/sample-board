@@ -1,6 +1,8 @@
 package com.example.sampleboard.config;
 
+import com.example.sampleboard.domain.UserAccount;
 import com.example.sampleboard.dto.UserAccountDto;
+import com.example.sampleboard.repository.UserAccountRepository;
 import com.example.sampleboard.service.UserAccountService;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
@@ -17,17 +19,17 @@ public class TestSecurityConfig {
     @MockBean
     private UserAccountService userAccountService;
 
+    @MockBean
+    private UserAccountRepository userAccountRepository;
+
     @BeforeTestMethod
     public void securitySetUp() {
-        given(userAccountService.searchUser(anyString()))
-                .willReturn(Optional.of(createUserAccountDto()));
-        given(userAccountService.saveUser(anyString(), anyString(), anyString(), anyString(), anyString()))
-                .willReturn(createUserAccountDto());
+        given(userAccountRepository.findById(anyString())).willReturn(Optional.of(createUserAccountDto()));
     }
 
 
-    private UserAccountDto createUserAccountDto() {
-        return UserAccountDto.of(
+    private UserAccount createUserAccountDto() {
+        return UserAccount.of(
                 "unoTest",
                 "pw",
                 "uno-test@email.com",

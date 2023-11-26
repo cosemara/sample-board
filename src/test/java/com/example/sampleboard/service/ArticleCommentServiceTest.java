@@ -2,10 +2,9 @@ package com.example.sampleboard.service;
 
 import com.example.sampleboard.domain.Article;
 import com.example.sampleboard.domain.ArticleComment;
-import com.example.sampleboard.domain.Hashtag;
 import com.example.sampleboard.domain.UserAccount;
-import com.example.sampleboard.domain.type.SearchType;
-import com.example.sampleboard.dto.*;
+import com.example.sampleboard.dto.ArticleCommentDto;
+import com.example.sampleboard.dto.UserAccountDto;
 import com.example.sampleboard.repository.ArticleCommentRepository;
 import com.example.sampleboard.repository.ArticleRepository;
 import com.example.sampleboard.repository.UserAccountRepository;
@@ -15,17 +14,12 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.data.domain.Page;
-import org.springframework.test.util.ReflectionTestUtils;
 
 import javax.persistence.EntityNotFoundException;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.BDDAssertions.tuple;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.*;
 
@@ -131,13 +125,14 @@ class ArticleCommentServiceTest {
     void givenArticleCommentId_whenDeletingArticleComment_thenDeletesArticleComment() {
         // Given
         Long articleCommentId = 1L;
-        willDoNothing().given(articleCommentRepository).deleteById(articleCommentId);
+        String userId = "uno";
+        willDoNothing().given(articleCommentRepository).deleteByIdAndUserAccount_UserId(articleCommentId, userId);
 
         // When
-        sut.deleteArticleComment(articleCommentId);
+        sut.deleteArticleComment(articleCommentId, userId);
 
         // Then
-        then(articleCommentRepository).should().deleteById(articleCommentId);
+        then(articleCommentRepository).should().deleteByIdAndUserAccount_UserId(articleCommentId, userId);
     }
 
 
