@@ -1,11 +1,8 @@
 package com.example.sampleboard.dto.response;
 
 import com.example.sampleboard.dto.ArticleDto;
-import com.example.sampleboard.dto.HashtagDto;
 
 import java.time.LocalDateTime;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 public record ArticleResponse(
         Long id,

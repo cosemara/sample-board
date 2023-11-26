@@ -1,10 +1,7 @@
 package com.example.sampleboard.dto.request;
 
 import com.example.sampleboard.dto.ArticleDto;
-import com.example.sampleboard.dto.HashtagDto;
 import com.example.sampleboard.dto.UserAccountDto;
-
-import java.util.Set;
 
 public record ArticleRequest(
         String title,
