@@ -63,7 +63,7 @@ public class ArticleComment extends AuditingFields {
         return new ArticleComment(article, userAccount, null, content);
     }
 
-    public void addChildComments(ArticleComment child) {
+    public void addChildComment(ArticleComment child) {
         child.setParentCommentId(this.getId());
         this.getChildComments().add(child);
     }
