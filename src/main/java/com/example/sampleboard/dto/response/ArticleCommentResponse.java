@@ -8,12 +8,12 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public record ArticleCommentResponse(
-        Long id,
-        String content,
-        LocalDateTime createdAt,
-        String email,
-        String nickname,
-        String userId
+    Long id,
+    String content,
+    LocalDateTime createdAt,
+    String email,
+    String nickname,
+    String userId
 ) {
 
     public static ArticleCommentResponse of(Long id, String content, LocalDateTime createdAt, String email, String nickname, String userId) {
@@ -27,12 +27,12 @@ public record ArticleCommentResponse(
         }
 
         return new ArticleCommentResponse(
-                dto.id(),
-                dto.content(),
-                dto.createdAt(),
-                dto.userAccountDto().email(),
-                nickname,
-                dto.userAccountDto().userId()
+            dto.id(),
+            dto.content(),
+            dto.createdAt(),
+            dto.userAccountDto().email(),
+            nickname,
+            dto.userAccountDto().userId()
         );
     }
 

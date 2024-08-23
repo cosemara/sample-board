@@ -2,14 +2,12 @@ package com.example.sampleboard.service;
 
 import com.example.sampleboard.domain.Article;
 import com.example.sampleboard.domain.ArticleComment;
-import com.example.sampleboard.domain.Hashtag;
 import com.example.sampleboard.domain.UserAccount;
 import com.example.sampleboard.dto.ArticleCommentDto;
 import com.example.sampleboard.dto.UserAccountDto;
 import com.example.sampleboard.repository.ArticleCommentRepository;
 import com.example.sampleboard.repository.ArticleRepository;
 import com.example.sampleboard.repository.UserAccountRepository;
-import java.util.Set;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

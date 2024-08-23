@@ -3,6 +3,7 @@ package com.example.sampleboard.controller;
 import com.example.sampleboard.config.TestSecurityConfig;
 import com.example.sampleboard.service.ArticleService;
 import com.example.sampleboard.service.PaginationService;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

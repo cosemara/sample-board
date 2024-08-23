@@ -1,4 +1,4 @@
-package com.example.sampleboard.domain.type;
+package com.example.sampleboard.domain.constant;
 
 import lombok.Getter;
 
@@ -6,9 +6,9 @@ public enum FormStatus {
     CREATE("저장", false),
     UPDATE("수정", true);
 
-    @Getter private final String description;
     @Getter
-    private final Boolean update;
+    private final String description;
+    @Getter private final Boolean update;
 
     FormStatus(String description, Boolean update) {
         this.description = description;

@@ -1,9 +1,7 @@
 package com.example.sampleboard.repository;
 
 import com.example.sampleboard.domain.ArticleComment;
-import com.example.sampleboard.domain.QArticle;
 import com.example.sampleboard.domain.QArticleComment;
-import com.example.sampleboard.domain.projection.ArticleCommentProjection;
 import com.querydsl.core.types.dsl.DateTimeExpression;
 import com.querydsl.core.types.dsl.StringExpression;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,11 +12,11 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.util.List;
 
-@RepositoryRestResource(excerptProjection = ArticleCommentProjection.class)
+@RepositoryRestResource
 public interface ArticleCommentRepository extends
-        JpaRepository<ArticleComment, Long>,
-        QuerydslPredicateExecutor<ArticleComment>,
-        QuerydslBinderCustomizer<QArticleComment> {
+    JpaRepository<ArticleComment, Long>,
+    QuerydslPredicateExecutor<ArticleComment>,
+    QuerydslBinderCustomizer<QArticleComment> {
 
     List<ArticleComment> findByArticle_Id(Long articleId);
     void deleteByIdAndUserAccount_UserId(Long articleCommentId, String userId);
