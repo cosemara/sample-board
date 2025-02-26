@@ -1,6 +1,7 @@
 package com.example.sampleboard.dto.security;
 
 import com.example.sampleboard.dto.UserAccountDto;
+import java.util.Map;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -9,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.Set;
 import java.util.stream.Collectors;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 
 public record BoardPrincipal(
     String username,
@@ -16,10 +18,15 @@ public record BoardPrincipal(
     Collection<? extends GrantedAuthority> authorities,
     String email,
     String nickname,
-    String memo
-) implements UserDetails {
+    String memo,
+    Map<String, Object> oAuth2Attiributes
+    ) implements UserDetails, OAuth2User {
 
     public static BoardPrincipal of(String username, String password, String email, String nickname, String memo) {
+        return of(username, password, email, nickname, memo, Map.of());
+    }
+
+    public static BoardPrincipal of(String username, String password, String email, String nickname, String memo, Map<String, Object> oAuth2Attiributes) {
         // 지금은 인증만 하고 권한을 다루고 있지 않아서 임의로 세팅한다.
         Set<RoleType> roleTypes = Set.of(RoleType.USER);
 
@@ -33,7 +40,8 @@ public record BoardPrincipal(
             ,
             email,
             nickname,
-            memo
+            memo,
+            oAuth2Attiributes
         );
     }
 
@@ -67,6 +75,15 @@ public record BoardPrincipal(
     @Override public boolean isCredentialsNonExpired() { return true; }
     @Override public boolean isEnabled() { return true; }
 
+    @Override
+    public Map<String, Object> getAttributes() {
+        return oAuth2Attiributes;
+    }
+
+    @Override
+    public String getName() {
+        return username;
+    }
 
     public enum RoleType {
         USER("ROLE_USER");
